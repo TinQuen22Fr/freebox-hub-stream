@@ -80,3 +80,8 @@ memory/test_credentials.md
 
 # Mobile development
 android-sdk/
+
+# camera-hub-personal : binaire go2rtc (téléchargé par arch via deploy/native/install.sh) + médias
+/go2rtc/go2rtc
+/go2rtc/recordings/
+deploy/native/go2rtc/

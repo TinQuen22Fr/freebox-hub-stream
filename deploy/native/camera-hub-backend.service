@@ -1,0 +1,17 @@
+[Unit]
+Description=camera-hub-personal backend (FastAPI)
+After=network-online.target go2rtc.service mongod.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__USER__
+Group=__USER__
+WorkingDirectory=__PREFIX__/app/backend
+EnvironmentFile=__PREFIX__/camera-hub.env
+ExecStart=__PREFIX__/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8001
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
