@@ -85,3 +85,9 @@ android-sdk/
 /go2rtc/go2rtc
 /go2rtc/recordings/
 deploy/native/go2rtc/
+.env
+.env.*
+*.env
+credentials.json
+*.key
+.credentials
