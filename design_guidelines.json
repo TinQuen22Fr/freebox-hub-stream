@@ -1,0 +1,142 @@
+{
+  "theme_and_archetype": {
+    "theme": "Dark",
+    "archetype": "2 (The Performance Pro / Tactical Command Center)",
+    "description": "A high-visibility, technical, tactical UI. Deep Obsidian anchored with Pure White data points. Built for an advanced Linux user monitoring an NVR-style dashboard in diverse lighting conditions.",
+    "forbidden": [
+      "Teal green",
+      "Teal blue",
+      "Space Grotesk",
+      "Inter for headings",
+      "Pure #000000",
+      "Soft UI / Excessive border radius"
+    ]
+  },
+  "typography": {
+    "headings": {
+      "family": "Chivo, sans-serif",
+      "weights": ["400", "700", "900"],
+      "tracking": "tracking-tight"
+    },
+    "body": {
+      "family": "IBM Plex Sans, sans-serif",
+      "weights": ["400", "500"]
+    },
+    "mono_data": {
+      "family": "IBM Plex Mono, monospace",
+      "usage": "Timestamps, IP addresses, bitrates, camera IDs",
+      "tracking": "tracking-tight"
+    },
+    "hierarchy": {
+      "h1": "text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tighter font-black",
+      "h2": "text-xl sm:text-2xl uppercase tracking-widest font-bold text-white/80",
+      "h3": "text-lg font-semibold",
+      "body": "text-sm text-white/70",
+      "labels": "text-xs uppercase tracking-[0.2em] text-white/50"
+    }
+  },
+  "colors": {
+    "base": {
+      "background": "#0A0C10",
+      "surface": "#12151A",
+      "surface_elevated": "#1A1D24"
+    },
+    "borders": {
+      "default": "#222731",
+      "focus": "#FFFFFF",
+      "active": "#3B82F6"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#9CA3AF",
+      "muted": "#6B7280"
+    },
+    "status": {
+      "local_rtsp": "#10B981",
+      "cloud_smartlife": "#3B82F6",
+      "offline_error": "#EF4444",
+      "recording_motion": "#F97316"
+    }
+  },
+  "surfaces_and_materials": {
+    "strategy": "Grid Borders (The Technical Look) combined with Flat Solid surfaces. Avoid Glassmorphism for video grids to maximize performance and clarity.",
+    "camera_card": "border border-[#222731] bg-[#12151A] rounded-sm overflow-hidden relative group",
+    "control_panel": "bg-[#0A0C10] border-l border-[#222731] h-full",
+    "badges": "bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono uppercase",
+    "ptz_buttons": "bg-[#1A1D24] border border-[#222731] hover:bg-[#222731] hover:border-white/30 hover:text-white transition-all active:scale-95 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-md"
+  },
+  "grids_and_layout": {
+    "philosophy": "MODE B: The 'Control Room' Grid. High density, data correlation, scanability.",
+    "main_layout": "h-screen flex flex-col md:flex-row bg-[#0A0C10] overflow-hidden",
+    "camera_grid": "flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-2 auto-rows-max overflow-y-auto custom-scrollbar",
+    "sidebar_right": "w-full md:w-80 flex-shrink-0 border-l border-[#222731] bg-[#12151A] flex flex-col",
+    "spacing": "Tight padding within components (p-2, p-4) to maximize screen real estate for video feeds."
+  },
+  "components": {
+    "camera_feed": {
+      "description": "The main video player tile.",
+      "elements": [
+        "Top-left: Camera Name (Chivo) + Status Indicator Dot",
+        "Top-right: Mode Badge (Local/RTSP vs Cloud)",
+        "Bottom-left: Timestamp (IBM Plex Mono)",
+        "Bottom-right: Overlay controls on hover (Fullscreen, PTZ toggle, Settings)"
+      ],
+      "aspect_ratio": "aspect-video"
+    },
+    "ptz_controller": {
+      "description": "Directional pad for rotatable cameras.",
+      "layout": "Grid 3x3 for D-pad (Up, Down, Left, Right, Center Reset). Preset list below.",
+      "styling": "Neumorphic tactical keys with sharp 2px borders on active."
+    },
+    "recordings_timeline": {
+      "description": "Event list or horizontal timeline.",
+      "styling": "Dense list with colored left border indicating event type (Motion = Orange, Recording = Blue)."
+    }
+  },
+  "motion": {
+    "strategy": "Minimalist and immediate. Zero-delay feedback.",
+    "hover": "transition-colors duration-150 ease-out",
+    "recording_pulse": "animate-pulse (opacity 1 to 0.5)",
+    "feed_loading": "Skeleton with repeating linear gradient scanline effect"
+  },
+  "media_urls": {
+    "background_texture": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/288391c6-8aef-4ecc-8f81-3ef97e9ae800/images/2562184460c999aff94699d445f63fd25ecaf0688c03c8ed9ffe3dbac69ed37e.png",
+      "description": "Dark grainy texture for sidebar or login backgrounds."
+    },
+    "camera_placeholders": [
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/288391c6-8aef-4ecc-8f81-3ef97e9ae800/images/a02422928168d5d33c932b63b550d32f8b3983b8832b71caad0407c58015f589.png",
+        "description": "Indoor Night Vision"
+      },
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/288391c6-8aef-4ecc-8f81-3ef97e9ae800/images/14b84e9b48ff1845f16bb985d1d6d011d5aaf73f54fb26144bf835702288fd48.png",
+        "description": "Office Desk Day"
+      },
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/288391c6-8aef-4ecc-8f81-3ef97e9ae800/images/0954bbbb12e674e20fd36851f547de32f84f217fe5cffeba25ac0f370a487473.png",
+        "description": "Outdoor Patio Day"
+      }
+    ]
+  },
+  "accessibility_and_testing": {
+    "contrast": "Text must pass WCAG AA over dark backgrounds. Avoid gray-on-gray.",
+    "focus_states": "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#0A0C10]",
+    "data_testids": [
+      "data-testid='camera-grid'",
+      "data-testid='camera-feed-{id}'",
+      "data-testid='ptz-control-up'",
+      "data-testid='ptz-control-down'",
+      "data-testid='timeline-event-{id}'",
+      "data-testid='settings-toggle'"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Use raw HTML/Tailwind for the dense camera grid layout to maximize control, rather than Shadcn Cards which bring unwanted padding and border radius.",
+    "Use Shadcn for Forms, Dialogs (Camera Management), and Tabs (Sidebar switching).",
+    "For icons, install and use @phosphor-icons/react or lucide-react with technical/solid variants.",
+    "Implement the UI as a single-page full-height dashboard (100vh) without global scrolling. Only the grid and sidebar content should scroll internally.",
+    "Use the provided placeholder media URLs to mock the video feeds so the design can be evaluated.",
+    "Keep border radius minimal (rounded-sm or rounded-none) to maintain the tactical control room aesthetic."
+  ]
+}
