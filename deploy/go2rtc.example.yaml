@@ -1,0 +1,38 @@
+# go2rtc configuration for camera-hub-personal (self-hosted)
+# Copy to go2rtc.yaml and adapt to YOUR cameras. Remove the demo_* block in prod.
+
+api:
+  listen: ":1984"        # reachable by the backend container (bridge network)
+  origin: "*"
+
+rtsp:
+  listen: ":8554"
+
+webrtc:
+  listen: ":8555"
+  # For low-latency WebRTC over the Internet, set your PUBLIC IP here and open 8555/udp:
+  # candidates:
+  #   - 203.0.113.10:8555      # <-- Kimsufi public IP
+  #   - stun:8555
+
+ffmpeg:
+  bin: ffmpeg
+
+log:
+  level: info
+
+streams:
+  # ---- YOUR LSC CAMERAS (mode Local / Dual via toolkit tasarren) ----
+  # 2 rotatives (PTZ) :
+  # camera_entree:  rtsp://192.168.0.61:554/main_ch
+  # camera_allee:   rtsp://192.168.0.62:554/main_ch
+  # 6 fixes (LSC Smart Indoor) flashées :
+  # salon:          rtsp://192.168.0.63:554/main_ch
+  # cuisine:        rtsp://192.168.0.64:554/main_ch
+  # ...
+  #
+  # Astuce: tu peux laisser le BACKEND injecter les flux automatiquement
+  # (PUT /api/streams) depuis la page de gestion des caméras du hub.
+
+  # ---- DEMO (à SUPPRIMER en production) ----
+  demo_entrance: "exec:ffmpeg -hide_banner -loglevel error -re -f lavfi -i testsrc2=size=854x480:rate=12 -c:v libx264 -preset ultrafast -tune zerolatency -pix_fmt yuv420p -g 24 -f rtsp -rtsp_transport tcp {output}"

@@ -1,0 +1,55 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    networks: [hub]
+
+  go2rtc:
+    image: alexxit/go2rtc:latest
+    restart: unless-stopped
+    volumes:
+      - ./go2rtc.yaml:/config/go2rtc.yaml:ro
+    ports:
+      - "8555:8555/tcp"   # WebRTC (low-latency)
+      - "8555:8555/udp"   # WebRTC
+      # - "8554:8554"     # RTSP re-publish (optional)
+    networks: [hub]
+
+  backend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.backend
+    restart: unless-stopped
+    environment:
+      MONGO_URL: mongodb://mongo:27017
+      DB_NAME: ${DB_NAME:-camerahub}
+      GO2RTC_URL: http://go2rtc:1984
+      RECORDINGS_DIR: /data/recordings
+      CORS_ORIGINS: ${PUBLIC_ORIGIN:-*}
+    volumes:
+      - recordings:/data/recordings
+    ports:
+      - "127.0.0.1:8001:8001"
+    depends_on: [mongo, go2rtc]
+    networks: [hub]
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.frontend
+      args:
+        REACT_APP_BACKEND_URL: ${PUBLIC_ORIGIN:-http://localhost:8001}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8088:80"
+    depends_on: [backend]
+    networks: [hub]
+
+volumes:
+  mongo_data:
+  recordings:
+
+networks:
+  hub:
